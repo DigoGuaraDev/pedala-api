@@ -28,15 +28,11 @@ export class EstacoesService {
         
                 await this.estacaoRepository.save,(request)
     }
-}
-export class EstacaoService{
-
-    async buscarEstacaoPeloNome(nomeEstacao: string):Promise<EstacaoModel | null>{
+     async buscarEstacaoPeloNome(nomeEstacao: string):Promise<EstacaoModel | null>{
         return await this.estacaoRepository.findOne()
     }
-
-    async buscarEstacaoPorID(Id: string):Promise<EstacaoModel> {
-        return await this.estacaoRepository.findOne({
+    async buscarEstacaoPorID(estacaoId: string):Promise<EstacaoModel | null> {
+        return await this.buscarEstacoRepository.findOneBy({
             id
         })
     }

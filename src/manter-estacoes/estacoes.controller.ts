@@ -1,4 +1,4 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Param, Post } from '@nestjs/common';
 import { request } from 'http';
 import { EsatacaoRequestDto } from './dto/estaco_request.dto';
 import { EstacaoModel } from './estacao.model';
@@ -14,10 +14,10 @@ export class EstacoesController {
         await this.estacaoSevice.criarEsatacao(request)
     }
     @Get()
-    async carregarEstacoes(): Promise<EstacaoModel[]> {
+    async carregarEstacoes():Promise <EstacaoModel[]> {
         request await this.estacaoSevice.buscarTodasEstacoes()
     }
-    @Get()
+    @Get("/:")
     async buscarEstacaoPorID(@Param("id") estacaoId: string):Promise<EstacaoModel | null> {
         return null
     }
