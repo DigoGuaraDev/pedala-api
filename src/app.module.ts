@@ -4,7 +4,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppService } from './app.service';
 import { UsuarioModule } from './usuario/usuario.module';
 import { typeOrmConfig } from './config/typeorm.config';
-import { ManterEstacoesModule } from './manter-estacoes/manter-estacoes.module';
+import { EstacoesModule } from './manter-estacoes/estacoes.module';
 
 @Module({
   imports: [
@@ -14,7 +14,7 @@ import { ManterEstacoesModule } from './manter-estacoes/manter-estacoes.module';
     }),
     TypeOrmModule.forRoot(typeOrmConfig),
     UsuarioModule,
-    ManterEstacoesModule
+    EstacoesModule
   ],
   providers: [AppService]
 })
