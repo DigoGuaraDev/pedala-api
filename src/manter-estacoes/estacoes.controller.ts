@@ -1,24 +1,32 @@
-import { Body, Controller, Param, Post } from '@nestjs/common';
-import { request } from 'http';
-import { EsatacaoRequestDto } from './dto/estaco_request.dto';
+import { Body, Controller, Get, Param, Post, Query } from '@nestjs/common';
+import { EstacoesService } from './estacoes.service';
+import { EsatacaoRequestDto } from './dto/estacao_request.dto';
 import { EstacaoModel } from './estacao.model';
 
-@Controller('manter-estacoes')
+@Controller('estacoes')
 export class EstacoesController {
+
     constructor(
-        private readonly estacaoSevice: EstacaoService
+        private readonly estacaoService: EstacoesService
     ){}
 
+
     @Post() //http://localhost:3000/estacoes
-    async addEstacao(@Body() request: EsatacaoRequestDto): Promise<void>{
-        await this.estacaoSevice.criarEsatacao(request)
+    async addEstacao(@Body() request: EsatacaoRequestDto ):Promise<void> {
+        await this.estacaoService.criarEstacao(request)
     }
+
     @Get()
-    async carregarEstacoes():Promise <EstacaoModel[]> {
-        request await this.estacaoSevice.buscarTodasEstacoes()
+    async carregarEstacoes():Promise<EstacaoModel[]>  {
+        return await this.estacaoService.buscarTodasEstacoes()
     }
-    @Get("/:")
-    async buscarEstacaoPorID(@Param("id") estacaoId: string):Promise<EstacaoModel | null> {
-        return null
+
+    @Get("/buscar")
+    async buscarEstacaoPeloNome(@Query("nome") nome:string):Promise<EstacaoModel[]> {
+        return await this.estacaoService.buscarEstacaoUsandoParteDoNome(nome)
+    }
+     @Get("/:id")
+    async buscarEstacaoPorId(@Param("id") estacaoId: string):Promise<EstacaoModel | null> {
+        return this.estacaoService.buscarEstacaoPorId(estacaoId)
     }
 }

@@ -1,41 +1,52 @@
-import { BadGatewayException, BadRequestException, Injectable } from '@nestjs/common';
-import { Repository } from 'typeorm';
+import { BadRequestException, Injectable, Query } from '@nestjs/common';
 import { EstacaoModel } from './estacao.model';
+import { ILike, Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
-import { EsatacaoRequestDto } from './dto/estaco_request.dto';
+import { EsatacaoRequestDto } from './dto/estacao_request.dto';
 
 @Injectable()
 export class EstacoesService {
 
     constructor(
-    @InjectRepository(EstacaoModel)
-        private readonly estacaoRepository:Repository<EstacaoModel>
+        @InjectRepository(EstacaoModel)
+        private readonly estacaoRepository: Repository<EstacaoModel>
     ){}
-    async criarEstacao(request: EsatacaoRequestDto):Promise<void>{
+
+    async criarEstacao(request:EsatacaoRequestDto ): Promise<void> {
         const estacao = await this.buscarEstacaoPeloNome(request.nome)
-        if(estacao) throw new BadRequestException(`já existe um cadastrada com ${request.nome}`)
-            await this.estacaoRepository.findOne({
+        if(estacao) throw new BadRequestException(`Já existe uma estação 
+            cadastrada com ${request.nome}`)
+        await this.estacaoRepository.save(request)
+    }
+
+    async buscarEstacaoPeloNome(nomeEstacao: string):Promise<EstacaoModel | null> {
+        return await this.estacaoRepository.findOne({
+            where: {
+                nome : nomeEstacao
+            }
         })
     }
 
-    async criarEsatacao(request: EsatacaoRequestDto):Promise <void> {
-        const estacao = await this.estacaoRepository.findOne({
-            where:{
-                nomeRequest:request.nome
-            }
-        })
-            if(estacao) throw new BadGatewayException(`Ja existe uma estação cadastrada com ${request.nome}`)
-        
-                await this.estacaoRepository.save,(request)
+    async buscarTodasEstacoes():Promise<EstacaoModel[]> {
+        return await this.estacaoRepository.find()
     }
-     async buscarEstacaoPeloNome(nomeEstacao: string):Promise<EstacaoModel | null>{
-        return await this.estacaoRepository.findOne()
-    }
-    async buscarEstacaoPorID(estacaoId: string):Promise<EstacaoModel | null> {
-        return await this.buscarEstacoRepository.findOneBy({
+
+    async buscarEstacaoPorId(id:string): Promise<EstacaoModel | null> {
+        return await this.estacaoRepository.findOneBy({
             id
         })
     }
+
+    async buscarEstacaoUsandoParteDoNome():Promise <EstacaoModel[]> {
+        console.log('***',Query)
+        const estacao = await this.estacaoRepository.find({
+            where:{
+            nome : ILike(`%${Query}%`)
+            }
+        })
+        return estacao
+    }
+    
 }
 
     
