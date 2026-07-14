@@ -10,8 +10,8 @@ export class ModeloService {
 
     constructor(
         @InjectRepository(ModeloModel)
-        privat readonly moduloRepository: Repository<ModeloModel>
-        privat readonly marcaService: MarcaService
+        private readonly moduloRepository: Repository<ModeloModel>,
+        private readonly marcaService: MarcaService
     ){}
 
     async addModelo(request:ModeloRequestDto):Promise<void>{

@@ -1,8 +1,8 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
-import { MarcaModel } from './dto/marca.model';
+import { MarcaModel } from './marca.model';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { MarcaRequestDto } from './dto/marca_request.dto';
+
 
 @Injectable()
 export class MarcaService {
@@ -11,40 +11,28 @@ export class MarcaService {
          private readonly marcaRepository:Repository<MarcaModel> 
     ){}
 
-    async criarMarca(request:MarcaRequestDto): Promise<void>{
-        const marca = await this.buscarMarcaPeloNome(request.nomeMarca)
-        if(marca) throw new BadRequestException(`já existe uma Marca 
-            cadastrada com ${request.nomeMarca}`) 
-            await this.marcaRepository.save(request)
-    }
+        async addMarca(nome:string): Promise<void>{
+            const existeMarca = await this.marcaRepository.findOneBy({ nomeMarca: nome})
+            if (existeMarca) throw new BadRequestException(`Marca já registrada com 
+                este nome ${nome}`)
+                const marca = this.marcaRepository.create({ nomeMarca: nome})
+                await this.marcaRepository.save(marca)
 
-     async buscarMarcaPeloNome(nomeMarca: string):Promise<MarcaModel | null> {
-            return await this.marcaRepository.findOne({
-                where: {
-                 nomeMarca: nomeMarca
-            }
-        })
-    }
+        }
 
-    async buscarTodasMarcas():Promise<MarcaModel[]> {
+        async carregarMarcas(): Promise<MarcaModel[]> {
             return await this.marcaRepository.find()
         }
-        
-    async buscarEstacaoPorId(id:string): Promise<MarcaModel | null> {
-            return await this.marcaRepository.findOneBy({
-            id
-        
-        })
+
+        async carregarMarcaPorId(id: string): Promise<MarcaModel> {
+            const marca = await this.marcaRepository.findOne({
+                where: {
+                    id
+                }
+            })
+            if(!marca) throw new BadRequestException("Marca não encontrada")
+            return marca    
+        } 
     }
 
-             //async buscarEstacaoUsandoParteDoNome():Promise <MarcaModel[]> {
-                    //console.log('***',Query)
-                    //const estacao = await this.marcaRepository.find({
-                       // where:{
-                       // nomeMarca : ILike(`%${Query}%`)
-                       // }
-                   // })
-                    //return estacao
-               // }
 
-}
