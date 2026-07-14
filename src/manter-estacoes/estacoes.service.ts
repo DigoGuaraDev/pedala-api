@@ -16,13 +16,13 @@ export class EstacoesService {
         const estacao = await this.buscarEstacaoPeloNome(request.nome)
         if(estacao) throw new BadRequestException(`Já existe uma estação 
             cadastrada com ${request.nome}`)
-        await this.estacaoRepository.save(request)
+        await this.estacaoRepository.save
     }
 
     async buscarEstacaoPeloNome(nomeEstacao: string):Promise<EstacaoModel | null> {
         return await this.estacaoRepository.findOne({
             where: {
-                nome : nomeEstacao
+             nomeEstacao: nomeEstacao
             }
         })
     }
@@ -41,7 +41,7 @@ export class EstacoesService {
         console.log('***',Query)
         const estacao = await this.estacaoRepository.find({
             where:{
-            nome : ILike(`%${Query}%`)
+            nomeEstacao : ILike(`%${Query}%`)
             }
         })
         return estacao

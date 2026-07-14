@@ -2,6 +2,7 @@ import { Body, Controller, Get, Param, Post, Query } from '@nestjs/common';
 import { EstacoesService } from './estacoes.service';
 import { EsatacaoRequestDto } from './dto/estacao_request.dto';
 import { EstacaoModel } from './estacao.model';
+import { NOMEM } from 'dns';
 
 @Controller('estacoes')
 export class EstacoesController {
@@ -21,9 +22,11 @@ export class EstacoesController {
         return await this.estacaoService.buscarTodasEstacoes()
     }
 
-    @Get("/buscar")
-    async buscarEstacaoPeloNome(@Query("nome") nome:string):Promise<EstacaoModel[]> {
-        return await this.estacaoService.buscarEstacaoUsandoParteDoNome(nome)
+     @Get("/buscar")
+    async buscandoEstacaoPeloNome(@Query("nome") nome:string)
+            :Promise<EstacaoModel[]> {
+        return await this.estacaoService
+        .buscarEstacaoUsandoParteDoNome()
     }
      @Get("/:id")
     async buscarEstacaoPorId(@Param("id") estacaoId: string):Promise<EstacaoModel | null> {

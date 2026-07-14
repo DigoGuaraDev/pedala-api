@@ -15,6 +15,7 @@ export class Modelo1783949602118 implements MigrationInterface {
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
+        await queryRunner.dropTable("modelos")
     }
 
 }

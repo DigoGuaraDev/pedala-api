@@ -1,5 +1,5 @@
 import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm"
-import { MarcaModel } from "./marca.model"
+import { MarcaModel } from "../marca/dto/marca.model"
 
 @Entity("modelo")
 export class ModeloModel {
