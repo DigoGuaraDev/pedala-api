@@ -1,15 +1,12 @@
-import { Column, CreateDateColumn, Entity, JoinColumn, ManyToMany, PrimaryColumn, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm"
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToMany, ManyToOne, PrimaryColumn, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm"
 import { ModeloModel } from "../modelo/modelo.model"
+import { MarcaModel } from "src/marca/marca.model"
 
 @Entity("bicicletas")
 export class BicicletaModel {
 
-    @PrimaryColumn('uuid')
+    @PrimaryGeneratedColumn('uuid')
     id:string
-
-    @ManyToMany(() => ModeloModel)
-    @JoinColumn({name:"modelo_id"})
-    Modelo: ModeloModel
 
     @Column()
     status: boolean
@@ -19,4 +16,12 @@ export class BicicletaModel {
 
     @UpdateDateColumn({name:"dt_atualizar",update:true})
     dataDEAtualizacao: Date
+
+    @ManyToOne(()=> ModeloModel)
+    @JoinColumn({ name:'modelo_id'})
+    modelo:ModeloModel;
+
+    @ManyToOne(()=> MarcaModel )
+    @JoinColumn({ name: 'marca_id'})
+    marca:MarcaModel;
 }

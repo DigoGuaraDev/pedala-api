@@ -8,7 +8,7 @@ export class EsatacaoRequestDto{
     })
     nome: string
 
-    @IsNotEmpty({message:"campo cacidades é opricadorio"})
+    @IsNotEmpty({message:"campo capacidades é opricadorio"})
     @IsInt()
     capacidad: number
 
