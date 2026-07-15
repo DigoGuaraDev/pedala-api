@@ -1,4 +1,4 @@
-import { BadGatewayException, BadRequestException, Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ModeloModel } from './modelo.model';
 import { Repository } from 'typeorm';
@@ -29,5 +29,20 @@ export class ModeloService {
     await this.moduloRepository.save(modelo)
     }
 
+    async carregarModelo():Promise<ModeloModel[]> {
+        return await this.moduloRepository.find({
+            relations:{
+                marca:true
+            }
+        })
+    }
+
+    async puscarModelPorId(id:string):Promise<ModeloModel> {
+        const modelo= await this.moduloRepository.findOne({
+            where:{
+                id
+            }
+        })
+    }
     
 }

@@ -16,8 +16,8 @@ export class ModeloController {
     }
 
     @Get()
-    async carregarModelos(): Promise<ModeloModel | null > {
-           return null
+    async carregarModelos(): Promise<ModeloModel[]> {
+           return await this.modeloService.carregarModelo()
     }
  
     @Get("/marca")
