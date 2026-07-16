@@ -1,19 +1,21 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { BicicletaModel } from './bicicleta.model';
 import { Repository } from 'typeorm';
-import { BicicletaRequestDto } from './dto/bicicletas.request.dto';
+import { ModeloService } from 'src/modelo/modelo.service';
+
 
 @Injectable()
 export class BicicletasService {
     constructor(
         @InjectRepository(BicicletaModel)
-         private readonly moduloRepository: Repository<BicicletaModel>,
-         private readonly bicicletaService: BicicletasService
+        private readonly bicicletaRepository: Repository<BicicletaModel>,
+        private readonly modeloService: ModeloService
     ){}
 
-    async AddBicicletas(request:BicicletaRequestDto): Promise<void> {
-        const bicicleta = await this.bicicletaService.cerregarBicicletaPorId(request.)
+    async addBicicleta():Promise<void>{
+
     }
 
+    async carregarBicicleta(): Promise<void>{}
 }
