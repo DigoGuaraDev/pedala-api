@@ -2,6 +2,7 @@ import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { BicicletaModel } from './bicicleta.model';
 import { Repository } from 'typeorm';
+import { BicicletaRequestDto } from './dto/bicicletas.request.dto';
 import { ModeloService } from 'src/modelo/modelo.service';
 
 
@@ -9,13 +10,14 @@ import { ModeloService } from 'src/modelo/modelo.service';
 export class BicicletasService {
     constructor(
         @InjectRepository(BicicletaModel)
-        private readonly bicicletaRepository: Repository<BicicletaModel>,
+        private readonly bicicletaRepository:Repository<BicicletaModel>,
         private readonly modeloService: ModeloService
     ){}
 
-    async addBicicleta():Promise<void>{
+    async addBicicleta(): Promise<void> {
 
     }
 
-    async carregarBicicleta(): Promise<void>{}
-}
+async carregarBicicletas(): Promise<void> {}
+
+    }
