@@ -29,7 +29,7 @@ export class EstacoesController {
         .buscarEstacaoUsandoParteDoNome()
     }
      @Get("/:id")
-    async buscarEstacaoPorId(@Param("id") estacaoId: string):Promise<EstacaoModel | null> {
-        return this.estacaoService.buscarEstacaoPorId(estacaoId)
+    async  buscarEstacaoPorId(@Param("id") estacaoId: string):Promise<EstacaoModel | null> {
+        return this.estacaoService.buscarEstacaoPorIdESituacao(estacaoId)
     }
 }

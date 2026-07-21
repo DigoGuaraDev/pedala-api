@@ -1,3 +1,4 @@
+import { SrvRecord } from "dns"
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm"
 
 @Entity("marcas")
@@ -7,5 +8,6 @@ export class MarcaModel {
 
     @Column({name:"nome"})
     nomeMarca: string
+
 
 }

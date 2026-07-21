@@ -16,7 +16,7 @@ export class BicicletasController{
     }
 
     @Get()
-    async listarBicicletas():Promise<BicicletaModel[]>{
+    async listarBicicletas():Promise<BicicletaRequestDto[]>{
             return await this.bicicletaServices.carregarBicicletas()
     }
 } 

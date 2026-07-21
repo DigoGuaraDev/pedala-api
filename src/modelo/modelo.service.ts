@@ -16,7 +16,7 @@ export class ModeloService {
     ){}
 
     async addModelo(request:ModeloRequestDto):Promise<void>{
-       const marca= await this.marcaService.carregarMarcaPorId(request.marcaId)
+        const marca = await this.marcaService.carregarMarcaPorId(request.marcaId)
        const existeModelo = await this.moduloRepository.findOneBy({
            nomeMOdelo:request.nome
        })
@@ -64,18 +64,14 @@ export class ModeloService {
          })
     }
 
-    async carregarModeloPeloId(modeloId:string):Promise<ModeloModel>{
-        const Modelo = await this.moduloRepository.findOneBy({
-            where : {
+   async carregarModeloPeloId(modeloId: string): Promise<ModeloModel> {
+        const modelo = await this.moduloRepository.findOneBy({
             id: modeloId
-            },
-            relations:{
-                marca: true
-            }
         })
 
-        if (!Modelo) throw new NotFoundException("Modelo não encontrado!")
-
-            return Modelo
+        
+        if (!modelo) throw new NotFoundException("Modelo não encontrado!")
+        
+        return modelo
     }
 }

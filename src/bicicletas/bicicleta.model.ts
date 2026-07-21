@@ -14,7 +14,7 @@ export class BicicletaModel {
     type:'enum',
     enum: StatusEstacao,
     default: StatusEstacao.DISPONIVEL})
-    status: boolean
+    status: StatusEstacao
 
     @ManyToOne(() => EstacaoModel)
     @JoinColumn({name:"estacao_id"})
