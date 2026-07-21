@@ -6,13 +6,13 @@ export class EstacaoModel {
     id:string
 
     @Column({name: 'nm_estacao'})
-    nomeEstacao:string
+    nome:string
 
     @Column()
-    capacidade:number
+    capacidad:number
 
     @Column()
-    ativa:boolean
+    ativo:boolean
 
     @CreateDateColumn({name: 'dt_cricao'})
     dataCriacao: Date
