@@ -1,8 +1,9 @@
-import { BadRequestException, Injectable, Query } from '@nestjs/common';
+import { BadRequestException, Injectable, NotFoundException, Query } from '@nestjs/common';
 import { EstacaoModel } from './estacao.model';
 import { ILike, Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
-import { EsatacaoRequestDto } from './dto/estacao_request.dto';
+import { EstacaoRequestDto } from './dto/estacao_request.dto';
+import { request } from 'http';
 
 @Injectable()
 export class EstacoesService {
@@ -12,7 +13,7 @@ export class EstacoesService {
         private readonly estacaoRepository: Repository<EstacaoModel>
     ){}
 
-    async criarEstacao(request:EsatacaoRequestDto ): Promise<void> {
+    async criarEstacao(request:EstacaoRequestDto ): Promise<void> {
         const estacao = await this.buscarEstacaoPeloNome(request.nome)
         if(estacao) throw new BadRequestException(`Já existe uma estação 
             cadastrada com ${request.nome}`)
@@ -22,7 +23,7 @@ export class EstacoesService {
     async buscarEstacaoPeloNome(nomeEstacao: string):Promise<EstacaoModel | null> {
         return await this.estacaoRepository.findOne({
             where: {
-                nome : nomeEstacao
+             nome: nomeEstacao
             }
         })
     }
@@ -31,19 +32,37 @@ export class EstacoesService {
         return await this.estacaoRepository.find()
     }
 
-    async buscarEstacaoPorId(id:string): Promise<EstacaoModel | null> {
-        return await this.estacaoRepository.findOneBy({
+    //async buscarEstacaoPorId():Promise<EstacaoModel> {
+      //  const estacao = await this.estacaoRepository.findOneBy({
+        //    nome: .nome,
+          //  capacidad: request.capacidad,
+            //ativo: request.ativo
+        //})
+    async buscarEstacaaoPorId(id:string): Promise<EstacaoModel>{
+        const estacao = await this.estacaoRepository.findOneBy({
             id
         })
+    
+        if(!estacao) throw new NotFoundException("Nenhum estação encontrada com este id")
+         return estacao
     }
 
-    async buscarEstacaoUsandoParteDoNome():Promise <EstacaoModel[]> {
+     async buscarEstacaoPorIdESituacao(id:string, situacao: boolean): Promise<EstacaoModel> {
+        const estacao = await this.estacaoRepository.findOneBy({
+            id,
+            ativo: situacao
+        })
+
+        if(!estacao) throw new NotFoundException("Nenhuma estação encontrada com este id")
+            return estacao
+    }
+    async buscarEstacaoUsandoParteDoNome(Query:string):Promise <EstacaoModel[]> {
         console.log('***',Query)
         const estacao = await this.estacaoRepository.find({
             where:{
             nome : ILike(`%${Query}%`)
             }
-        })
+    })
         return estacao
     }
     

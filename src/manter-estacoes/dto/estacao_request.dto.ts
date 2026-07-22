@@ -1,6 +1,6 @@
 import { IsIn, IsInt, IsNotEmpty, MinLength, ValidationArguments } from "class-validator"
 
-export class EsatacaoRequestDto{
+export class EstacaoRequestDto{
 
     @IsNotEmpty({ message :"Campo nome é opricadorio"})
     @MinLength(6, {
@@ -8,7 +8,7 @@ export class EsatacaoRequestDto{
     })
     nome: string
 
-    @IsNotEmpty({message:"campo cacidades é opricadorio"})
+    @IsNotEmpty({message:"campo capacidades é opricadorio"})
     @IsInt()
     capacidad: number
 
