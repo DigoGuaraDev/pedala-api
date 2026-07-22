@@ -1,4 +1,5 @@
-import { IsEmail, IsNotEmpty, IsPhoneNumber, MinLength } from "class-validator";
+import { IsEmail, IsEnum, IsNotEmpty, IsOptional, IsPhoneNumber, MinLength } from "class-validator";
+import { UsuarioPapel } from "../usuario.papel.enum";
 
 export class UsuarioRequestDto {
     
@@ -12,4 +13,8 @@ export class UsuarioRequestDto {
     @IsPhoneNumber("BR")
     @IsNotEmpty()
     contato:string
+
+    @IsOptional()
+    @IsEnum(UsuarioPapel,{message:'papel inválido'} )
+    papeis: UsuarioPapel;
 }

@@ -4,7 +4,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppService } from './app.service';
 import { UsuarioModule } from './usuario/usuario.module';
 import { typeOrmConfig } from './config/typeorm.config';
-import { UsuarioPapelModule } from './usuario-papel/usuario-papel.module';
+
 
 @Module({
   imports: [
@@ -14,7 +14,7 @@ import { UsuarioPapelModule } from './usuario-papel/usuario-papel.module';
     }),
     TypeOrmModule.forRoot(typeOrmConfig),
     UsuarioModule,
-    UsuarioPapelModule
+  
   ],
   providers: [AppService]
 })
