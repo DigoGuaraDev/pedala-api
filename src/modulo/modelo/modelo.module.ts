@@ -3,8 +3,8 @@ import { ModeloService } from './modelo.service';
 import { ModeloController } from './modelo.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ModeloModel } from './modelo.model';
-import { MarcaModule } from 'src/marca/marca.module';
-import { MarcaModel } from 'src/marca/marca.model';
+import { MarcaModule } from 'src/modulo/marca/marca.module';
+import { MarcaModel } from 'src/modulo/marca/marca.model';
 
 
 @Module({

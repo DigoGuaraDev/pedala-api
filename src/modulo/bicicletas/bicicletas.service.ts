@@ -3,9 +3,9 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { BicicletaModel } from './bicicleta.model';
 import { Repository } from 'typeorm';
 import { BicicletaRequestDto } from './dto/bicicletas.request.dto';
-import { ModeloService } from 'src/modelo/modelo.service';
-import { EstacaoModel } from 'src/manter-estacoes/estacao.model';
-import { EstacoesService } from 'src/manter-estacoes/estacoes.service';
+import { ModeloService } from 'src/modulo/modelo/modelo.service';
+import { EstacaoModel } from 'src/modulo/manter-estacoes/estacao.model';
+import { EstacoesService } from 'src/modulo/manter-estacoes/estacoes.service';
 
 
 @Injectable()

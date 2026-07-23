@@ -2,7 +2,7 @@ import { BadRequestException, Injectable, NotFoundException } from '@nestjs/comm
 import { InjectRepository } from '@nestjs/typeorm';
 import { ModeloModel } from './modelo.model';
 import { ILike, Repository } from 'typeorm';
-import { MarcaService } from 'src/marca/marca.service';
+import { MarcaService } from 'src/modulo/marca/marca.service';
 import { ModeloRequestDto } from './dto/modelo.request.dto';
 import { ModeloResponseDto } from './dto/modelo.response.dto';
 
