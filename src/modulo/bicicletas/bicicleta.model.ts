@@ -1,7 +1,7 @@
 import { Column, CreateDateColumn, Entity, JoinColumn, ManyToMany, ManyToOne, PrimaryColumn, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm"
 import { ModeloModel } from "../modelo/modelo.model"
-import { MarcaModel } from "src/marca/marca.model"
-import { EstacaoModel } from "src/manter-estacoes/estacao.model"
+import { MarcaModel } from "src/modulo/marca/marca.model"
+import { EstacaoModel } from "src/modulo/manter-estacoes/estacao.model"
 import { StatusEstacao } from "./status.estaco.enum"
 
 @Entity("bicicletas")
