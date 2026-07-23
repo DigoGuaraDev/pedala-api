@@ -9,6 +9,7 @@ import { BicicletasModule } from './bicicletas/bicicletas.module';
 import { MarcaModule } from './marca/marca.module';
 import { ModeloModule } from './modelo/modelo.module';
 import { AuthModule } from './auth/auth.module';
+import { ManutencaoModule } from './manutencao/manutencao.module';
 
 
 @Module({
@@ -20,6 +21,7 @@ import { AuthModule } from './auth/auth.module';
     TypeOrmModule.forRoot(typeOrmConfig),
     UsuarioModule,
     AuthModule,
+    ManutencaoModule,
   ],
   providers: [AppService]
 })
