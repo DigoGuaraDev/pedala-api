@@ -8,6 +8,8 @@ import { EstacoesModule } from './manter-estacoes/estacoes.module';
 import { BicicletasModule } from './bicicletas/bicicletas.module';
 import { MarcaModule } from './marca/marca.module';
 import { ModeloModule } from './modelo/modelo.module';
+import { AuthModule } from './auth/auth.module';
+
 
 @Module({
   imports: [
@@ -17,10 +19,7 @@ import { ModeloModule } from './modelo/modelo.module';
     }),
     TypeOrmModule.forRoot(typeOrmConfig),
     UsuarioModule,
-    EstacoesModule,
-    BicicletasModule,
-    MarcaModule,
-    ModeloModule
+    AuthModule,
   ],
   providers: [AppService]
 })
