@@ -20,5 +20,10 @@ export class UsuarioModel {
         enum: UsuarioPapel,
         default: UsuarioPapel.CLIENTE,
     })
-    papaeis: UsuarioPapel
+    perfil: UsuarioPapel
+
+    @Column()
+    senha: string
+   // @Column({name:"manutenção"})
+    //manutencao: string
 }

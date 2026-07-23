@@ -5,18 +5,18 @@ export class AdicionarColunaPapeisUsuarios1784755172618 implements MigrationInte
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.addColumn("usuarios",
             new TableColumn({
-               name: "papeis",
-                type: "enum",
-                enum: ["ADMIN","CLIENTE","TECNICO"],
-                default: "'CLIENTE",
+               name: "perfil",
+                type: "varchar",//"enum",
+                length:"20",
+                default: "'CLIENTE'",
                 isNullable: false,
-
+              //enum: ["ADMIN","CLIENTE","TECNICO"],
             })
         )
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.dropColumn("usuario","papeis");
+        await queryRunner.dropColumn("usuario","perfil",true);
     }
 
 }
