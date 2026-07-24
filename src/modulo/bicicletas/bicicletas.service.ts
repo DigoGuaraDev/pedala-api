@@ -54,6 +54,15 @@ async carregarBicicletas(): Promise<BicicletaModel[]> {
             }
         })
     }
+    async carregarBicicletaPeloID(bicicleta:string):Promise<void>{
+        return ({
+            id : bicicleta.indexOf,
+            estaco: bicicleta.lotacao.nome,
+            modelo: bicicleta.modelo.nomeModelo,
+            marca: bicicleta.madelo.marca.nomeMarca,
+        })
+    }
+    
 }
 
     

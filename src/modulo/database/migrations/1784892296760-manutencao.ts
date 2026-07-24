@@ -7,9 +7,10 @@ export class Manutencao1784892296760 implements MigrationInterface {
             CREATE TABLE IF NOT EXISTS manutencoes(
                 id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
                 bicicleta_id UUID NOT NULL,
-                tecnico_id UUID NOT NULL ,
+                tecnico_id UUID  ,
                 responsavel_id UUID NOT NUll,
                 status VARCHAR(20) NOT NULL DEFAULT 'AGUARDANDO',
+                descricao 
                 dt_aberta DATE NOT NULL DEFAULT 'now()',
                 dt_atualizacao TIMESTAMP,
                 dt_finalizada TIMESTAMP,

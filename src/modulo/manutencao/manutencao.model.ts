@@ -27,9 +27,9 @@ export class ManutencaoModel{
     @Column({
         name:"status",
         type: 'enum',
-        default: 'StatusManutencao'.AGUARDANDO
+        default: 'StatusManutencao'.AGUADANDO
     })
-    status: StatusManutencao
+    status:StatusManutencao
 
     @Column({type:'text', nullable:true})
     obsevacoes:string //PENDENDE, EM ANDAMENTO, FINALIZDO
