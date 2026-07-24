@@ -9,6 +9,7 @@ import { EstacoesModule } from 'src/modulo/manter-estacoes/estacoes.module';
 @Module({
   imports: [TypeOrmModule.forFeature([BicicletaModel]),ModeloModule, EstacoesModule],
   providers: [BicicletasService],
-  controllers: [BicicletasController]
+  controllers: [BicicletasController],
+  exports: [BicicletasService]
 })
 export class BicicletasModule {}

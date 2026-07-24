@@ -48,15 +48,15 @@ export class UsuarioService {
         })
     }
 
-    // async buscarUsuarioPeloId(id:string): 
-    // Promise<UsuarioModel> {
-    //   const usuario = await this.usuarioRepository.findOneBy({
-    //     id: id
-    //   })
+     async buscarUsuarioPeloId(id:string): 
+     Promise<UsuarioModel> {
+       const usuario = await this.usuarioRepository.findOneBy({
+      id: id
+     })
 
-    //   if(!usuario) throw new BadRequestException("Usuario não encontrado!")
-    //   return usuario  
-    // }
+       if(!usuario) throw new BadRequestException("Usuario não encontrado!")
+       return usuario  
+     }
     async buscarUsuarioPeloId(id:string): 
     Promise<UsuarioModel> {
       return await this.usuarioRepository.findOneByOrFail({
